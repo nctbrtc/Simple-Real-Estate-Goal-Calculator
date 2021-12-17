@@ -1,0 +1,26 @@
+<html>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> 
+   <style> body { font-family: 'Poppins', sans-serif; } h2 { font-weight: 700; } .btn-grad { background-image: linear-gradient(to right, #D1913C 0%, #FFD194 51%, #D1913C 100%) } .btn-grad { margin: 10px; padding: 15px 45px; text-align: center; text-transform: uppercase; transition: 0.5s; background-size: 200% auto; color: black; /* box-shadow: 0 0 20px #eee; */ border-radius: 10px; display: block; border: 0; font-weight: 700; } .btn-grad:hover { background-position: right center; /* change the direction of the change here */ color: #fff; text-decoration: none; } </style>
+   <center><img src="https://empireofrealestate.com/wp-content/uploads/2020/10/cropped-Empire-of-real-estate-logo-2.png" class="my-3" width="120"></center>
+   <div class="container mt-3" style="max-width: 600px;padding:20px;background-color: black;color: white;border-radius: 10px;">
+      <h2 class='text-center my-4'> Yearly Sale Goal Calculator</h2>
+      <div class="row my-3">
+         <div class="col"> <label for="incomeGoal" class="form-label">Income Goal</label> <input class="form-control" name="incomeGoal" id="incomeGoal" pattern="[0-9]+" placeholder=""> </div>
+         <div class="col"> <label for="avgSalePrice" class="form-label">Avarage Sale Price</label> <input pattern="[0-9]+" class="form-control" name="avgSalePrice" id="avgSalePrice" placeholder=""> </div>
+      </div>
+      <div class="row my-3">
+         <div class="col"> <label for="avgSalePrice" class="form-label">Avarage Commission Rate %</label> <input type="number" class="form-control" name="avgCommRate" id="avgCommRate" placeholder=""> </div>
+         <div class="col"> <label for="avgSalePrice" class="form-label">Broker Split %</label> <input type="number" class="form-control" name="brokerRate" min="0" max="1" step="0.01" id="brokerRate" placeholder=""> </div>
+      </div>
+      <div class="row">
+         <div class="col text-center" style="width: 100%;">
+            <center> <button type="button" class="btn-grad" onclick="calculate()"> Calculate</button> </center>
+            <p id="result" class="mt-3"></p>
+         </div>
+      </div>
+   </div>
+   <script> function calculate() { var goal = document.getElementById('incomeGoal').value; goal= goal.replace(',',''); var price = document.getElementById('avgSalePrice').value; price= price.replace(',',''); var comm = (document.getElementById('avgCommRate').value) / 100; var split = (document.getElementById('brokerRate').value); var splitRest=(100-split)/100; var result = document.getElementById('result'); howMany = Number(goal) / (Number(price) * Number(comm) * splitRest); if($.trim(goal) === '') { alert('Please Enter Income Goal'); return false; } if($.trim(price) === '') { alert('Please Enter Avarage Property Price'); return false; } if($.trim(goal) === '') { alert('Please Enter Avarage Commission per Property'); return false; } if($.trim(goal) === '') { alert('Please Enter Borker Split Percent'); return false; } result.innerHTML = "<h2 class='text-center' style='color:white'>Your Yearly Sale Goal is<br><span style='color: #FFD194;font-size: 50px;padding-top:50px;'>" + Math.round(howMany) + "</h2>"; } </script> <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script> <script src="https://www.jqueryscript.net/demo/jQuery-Plugin-For-Number-Input-Formatting-Mask-Number/jquery.masknumber.js"></script> <script> $('#incomeGoal').maskNumber({integer: true}); $('#avgSalePrice').maskNumber({integer: true}); </script> 
+</html>
